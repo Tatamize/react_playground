@@ -1,0 +1,52 @@
+@import "./common";
+
+.main-navi {
+  text-align: center;
+  background-color: $color-background;
+  padding: 1.4em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc($size-font-unit * 1.4);
+  color: white;
+  div{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: calc(2.5 * $size-font-unit);
+    a{
+      display: block;
+      grid-column: span 1;
+      font-family: $font-strong;
+      letter-spacing: 0.03em;
+    }
+  }
+  span{
+    font-size: 11px;
+    color: $color-reactblue;
+    margin-bottom: calc(0.6 * $size-font-unit);
+  }
+}
+
+.react-logo {
+  height: 16vmin;
+  max-height: 80px;
+  pointer-events: none;
+  margin-bottom: calc(0.4 * $size-font-unit);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .react-logo {
+    animation: app-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
