@@ -5,14 +5,33 @@ This is a playground to test React, TypeScript, etc.
 <br/><br/>
 
 ## update
-22/Nov/2023 : The first upload. 
+22/Nov/2023 : The first upload.  
+ 
 11/Dec/2023 : Chat room added, game websocket sample added
-<br/>
 
-<br/>
+<br />
+
+## Websocket Server
+The "websocket_server" directory is for Websocket.  
+
+To use it,   
+```cd websocket_server```  
+
+to run chat server  
+```npm run chat```  
+
+to run game server  
+```npm run game``` 
+
+
+And run the React front end  
+```npm start```  (at the root directory)
+
+## preview
+
 -> [https://friendly-mermaid-aec9c6.netlify.app/](https://friendly-mermaid-aec9c6.netlify.app/) 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="text-align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
