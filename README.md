@@ -1,4 +1,25 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
+
+# react_playground
+This is a playground to test React, TypeScript, etc.
+<br/><br/>
+
+## update
+22/Nov/2023 : The first upload. 
+11/Dec/2023 : Chat room added, game websocket sample added
+<br/>
+
+<br/>
+-> [https://friendly-mermaid-aec9c6.netlify.app/](https://friendly-mermaid-aec9c6.netlify.app/) 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+<br/><br/><br/><br/>
+from here... the original React App readme.
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
