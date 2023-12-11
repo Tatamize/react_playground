@@ -15,7 +15,7 @@ $color-hover-blue:#35afd8;
 $font-strong: 'Bebas Neue', sans-serif;
 $font-text: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
-$size-font-unit: calc(9px + 0.8vmin);
+$size-font-unit: calc(10px + 1vmin);
 
 
 html {
@@ -135,6 +135,38 @@ div p:last-child{
     padding: 6vw;
     a{
       color: $color-reactblue;;
+    }
+  }
+}
+
+@mixin common_form(){
+  position: relative;
+  textarea, input{
+    padding: 8px;
+    border: none;
+    width: calc(100% - 81px);
+    height: inherit;
+    border-radius: 2px;
+    flex-grow: 1;
+  }
+  button{
+    margin-left: 1px;
+    width: 80px;
+    height: inherit;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding:  8px 16px;
+    border: none;
+    border-radius: 2px;
+    background: #333;
+    color:#FFF;
+    font-size: 1.3em;
+    font-family: $font-strong;
+    transition : all 0.2s ease 0s;
+    line-height: 1;
+    &:hover{
+      background:$color-hover-blue;
     }
   }
 }

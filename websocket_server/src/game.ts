@@ -8,7 +8,7 @@ const app = express();
 const server = createServer(app);
 
 // make this server as a socket.io WebSockets protocol server
-// cors option is needed to accept the request from other server without warning 
+// cors option is needed to accept the request from other server(url) without warning 
 const ioserver = new Server(server, {
   cors: {
     origin: "http://localhost:3030"
@@ -18,8 +18,8 @@ const ioserver = new Server(server, {
 app.use(cors());
 
 let usernum : number = 1; // dummy user number (1 or 2)
-let pos_a : number = 0;
-let pos_b : number = 0;
+let pos_a : number = 50;   // paddle position(updown) for player A
+let pos_b : number = 50;   // paddle position(updown) for player B
 
 
 ioserver.on('connection', (socket) => {
@@ -30,8 +30,8 @@ ioserver.on('connection', (socket) => {
   // to let the client his name (usernum)
   socket.emit('get name', usernum); // 
 
-  // handle 'move paddle' event (just send the same message to every one)
-  // pos: [number, number] = [usernum, position]
+  // handle 'move paddle' event (send the same message to every one)
+  // pos: [number, number] = [usernum, moving range]
   socket.on('move paddle', (pos: [number, number]) => {
     console.log("move paddle");
     console.log(pos[0]);

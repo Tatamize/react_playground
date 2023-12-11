@@ -3,9 +3,6 @@ import io from 'socket.io-client'; // Import socket.io-client as 'io'
 import { Socket } from 'socket.io-client';
 import "./game.scss";
 
-interface Position{
-	y : number;
-}
 
 export const Game = () =>{
 	const name = useRef<number | null>(0);		// to store the user name (1 or 2 :provided by server)

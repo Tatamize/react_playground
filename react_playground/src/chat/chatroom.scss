@@ -6,3 +6,10 @@
 		padding: 0.5em;
 	}
 }
+
+#make_new_room{
+	@include common_form();
+	input, button{
+		height: 50px;
+	}
+}

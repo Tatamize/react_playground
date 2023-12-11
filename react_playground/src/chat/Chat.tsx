@@ -7,10 +7,10 @@ import "./chat.scss";
 
 export function Chat({userIdVal} : {userIdVal : string}){
 	const { roomid } = useParams<{roomid :string}>(); 
-	const socket = useRef<Socket | null>(null);
-	const form = useRef<HTMLFormElement | null>(null);
-	const input = useRef<HTMLTextAreaElement | null>(null);
-	const messages = useRef<HTMLUListElement | null>(null);
+	const chat_socket = useRef<Socket | null>(null);
+	const chat_form = useRef<HTMLFormElement | null>(null);
+	const chat_text = useRef<HTMLTextAreaElement | null>(null);
+	const chat_messages = useRef<HTMLUListElement | null>(null);
 
 
 	// useEffect invokes the side effects.
@@ -21,31 +21,31 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		// [need API] check this if this userIdVal can access this roomid 
 
 		// create a socket running on WebSocket protocol
-		socket.current = io('http://localhost:3000');
+		chat_socket.current = io('http://localhost:3000');
 
-		// This is the default event of socket.io to do something(one time) at the connection
-		socket.current.on("connect", () => {
-			console.log(socket.current?.id);
-			socket.current?.emit('join a room' , [roomid, userIdVal]);
+		// This is the default event of chat_socket.io to do something(one time) at the connection
+		chat_socket.current.on("connect", () => {
+			console.log(chat_socket.current?.id);
+			chat_socket.current?.emit('join a room' , [roomid, userIdVal]);
 		});
 
 		// default event on disconnection
-		socket.current.on("disconnect", () => {
+		chat_socket.current.on("disconnect", () => {
 			// ! can't emit message anymore here
 		});
 		
 		// 'chat message' event (to server) : submit message
-		form.current?.addEventListener('submit', (e) => {
+		chat_form.current?.addEventListener('submit', (e) => {
 		e.preventDefault();
-		if (input.current?.value) {
-			socket.current?.emit('chat message' , [roomid, userIdVal, input.current.value]);	
-			input.current.value = '';
+		if (chat_text.current?.value) {
+			chat_socket.current?.emit('chat message' , [roomid, userIdVal, chat_text.current.value]);	
+			chat_text.current.value = '';
 		}
 		});
 		
 		// 'chat message' event (from server)
 		// [string, string] = [userID, message]
-		socket.current?.on('chat message' , (msg: [string, string]) => {
+		chat_socket.current?.on('chat message' , (msg: [string, string]) => {
 		let chatbox = document.getElementById('chat_inner');
 		const wrap = document.createElement('div');
 		const item = document.createElement('div');
@@ -56,13 +56,13 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		item.textContent = msg[1];
 		wrap.appendChild(user);
 		wrap.appendChild(item);
-		messages.current?.appendChild(wrap);
+		chat_messages.current?.appendChild(wrap);
 		window.scrollTo(0, document.body.scrollHeight);
 		chatbox?.scrollIntoView({block: "end", inline: "nearest"});
 		});
 		
 		// 'general' event (from server) : to show who is in this room
-		socket.current?.on('general' , (msg: string) => {
+		chat_socket.current?.on('general' , (msg: string) => {
 			let messe = document.getElementById('message_general');
 			const wrap = document.createElement('div');
 			wrap.textContent = msg;
@@ -70,7 +70,7 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		});
 
 		// For layout (to check area size)
-		let chatbox = document.getElementById('form_chat');
+		let chatbox = document.getElementById('chat_form');
 		let chatplace = chatbox?.getBoundingClientRect();
 		let chatposition = chatplace?.top;
 		let chatheight = Math.trunc(window.innerHeight - (chatposition ? chatposition : 0) - 250);
@@ -81,7 +81,7 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		// If you return a function from the effect, it will be called when the component unmounts
 		return () => {
 			// actually not needed
-			socket.current?.disconnect();
+			chat_socket.current?.disconnect();
 		};
 	  }, []);
 
@@ -89,12 +89,12 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		<>
 			<h1>Let's start Chat! {userIdVal}</h1>
 			<div id="message_general"></div>
-			<div className='form_chat' id='form_chat'>
-      			<section ref={messages} id="chat_inner"></section>
+			<div className='chat_form' id='chat_form'>
+      			<section ref={chat_messages} id="chat_inner"></section>
 
    			</div>
-			<form ref={form} id='form_submit'>
-      			<textarea id="chat_input" ref={input} />
+			<form ref={chat_form} id='form_submit'>
+      			<textarea id="chat_input" ref={chat_text} />
       			<button type="submit">Send</button>
       		</form>
 		</>
