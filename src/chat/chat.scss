@@ -1,24 +1,59 @@
 @import "../common/common.scss";
 
 
-.form_chat{
-  margin-top: 0;
-  margin: 2.5em 0;
-  form{
-    position: relative;
+#form_chat{
+  margin: 2.5em auto;
+  overflow: scroll;
+  overflow-x:hidden;
+  padding: 12px;
+  background-color: #ffffff2e;
+  // width:clamp(200px, 500px, 100%);
+  width:100%;
+  resize: vertical;
+  section{
+    div{
+      margin-bottom: 1em;
+      > span{
+        font-size: 0.9em;
+        color: #fff;
+      }
+      > div{
+        list-style: none;
+        display: block;
+        width: fit-content;
+        padding: 8px 20px;
+        background-color: #FFF;
+        border-radius: 18px;
+        margin-bottom: 4px;
+      }
+      &.my_dialog{
+        text-align: right;
+        > div{
+         margin-left: auto;
+        }
+      }
+    }
   }
-  input{
+}
+
+#chat_inner{
+  padding-bottom: 5px;
+}
+
+#form_submit{
+  position: relative;
+  textarea{
     padding: 8px;
     border: none;
     width: calc(100% - 81px);
-    height: 44px;
+    height: 140px;
     border-radius: 2px;
     flex-grow: 1;
   }
   button{
     margin-left: 1px;
     width: 80px;
-    height: 44px;
+    height: 140px;
     position: absolute;
     right: 0;
     top:0;
@@ -33,19 +68,6 @@
     line-height: 1;
     &:hover{
       background:$color-hover-blue;
-    }
-  }
-
-  ul{
-    padding: 0;
-    li{
-      list-style: none;
-      display: block;
-      width: fit-content;
-      padding: 8px 20px;
-      background-color: #FFF;
-      border-radius: 18px;
-      margin-bottom: 4px;
     }
   }
 }

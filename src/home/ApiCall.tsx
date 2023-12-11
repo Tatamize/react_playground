@@ -12,10 +12,11 @@ interface Coffee {
 }
 
 export const ApiCall: React.FC = () => {
-  const [item, setItem] = useState<Coffee[] | null>(null);
+  const [items, setItems] = useState<Coffee[] | null>(null);
   const { id } = useParams<{id :string}>(); 
 
   useEffect(() => {
+    console.log(id);
     const fetchItem = async () => {
       try
       {
@@ -23,7 +24,7 @@ export const ApiCall: React.FC = () => {
           `https://api.sampleapis.com/coffee/hot/`
         );
         const itemData: Coffee[] = await res.json();
-        setItem(itemData)
+        setItems(itemData)
       } catch(error) {
         console.error("Error fetching item:", error);
       }
@@ -31,28 +32,25 @@ export const ApiCall: React.FC = () => {
     fetchItem();
   }, [id]);
 
-  if (item)
-  {
-    return (
-      <>
-      <section id="api_call">
-        <h2>TRIAL / call API </h2>
-        <p>Let's try to call API!</p>
-        <p className="additional_info">via <a href="https://sampleapis.com/api-list/coffee" rel="noreferrer" target="_blank">https://sampleapis.com/api-list/coffee</a></p>
-        {
-          item.map((i) => (
-          <div className="list_item">
-            <img src={i.image} />
-            <div><h3>{i.title}</h3>
-            <p>{i.description}</p></div>
-            </div>
-        ))
-          
-        }
-        </section>
-      </>
-    );
-  }
-  else
-  	return (<></>)
+
+  return (
+    <>
+    <section id="api_call">
+      <h2>TRIAL / call API </h2>
+      <p>Let's try to call API!</p>
+      <p className="additional_info">via <a href="https://sampleapis.com/api-list/coffee" rel="noreferrer" target="_blank">https://sampleapis.com/api-list/coffee</a></p>
+      {
+        items?.map((i) => (
+        <div className="list_item">
+          <img src={i.image} />
+          <div><h3>{i.title}</h3>
+          <p>{i.description}</p></div>
+          </div>
+      ))        
+      }
+      </section>
+    </>
+  );
+
+
 };

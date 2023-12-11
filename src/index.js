@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode> // it is needed but it render twice useEffect...
+    <CookiesProvider>
+      <App />
+    </CookiesProvider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

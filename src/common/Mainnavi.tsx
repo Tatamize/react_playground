@@ -9,7 +9,7 @@ export const Mainnav: React.FC = () =>{
 		<header className="main-navi">
         <img src={logo} className="react-logo" alt="logo" />
 		<span>playground for ft_transcendence</span>
-        <div><Link to="/">Home</Link><Link to="/chat">Chat</Link><Link to="/game">Game</Link></div>
+        <div><Link to="/">Home</Link><Link to="/chatroom">Chat</Link><Link to="/game">Game</Link></div>
       	</header>
 		</>
 	);
