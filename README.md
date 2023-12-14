@@ -5,9 +5,6 @@ This is a playground to test React, TypeScript, etc.
 <br/><br/>
 
 ## update
-22/Nov/2023 : The first upload.  
- 
-11/Dec/2023 : Chat room added, game websocket sample added  
 
 15/Dec/2023 : Changed directory structure (made websockets and playground separated)  
 
@@ -16,24 +13,21 @@ This is a playground to test React, TypeScript, etc.
 ## Websocket Server
 The "websocket_server" directory is for Websocket.  
 
-To use it,   
-```cd websocket_server```  
-
 to run chat server  
 ```npm run chat```  
 
 to run game server  
 ```npm run game``` 
 
-
+## Playground
 And run the React front end  
-```npm start```  (at the root directory)
+```npm start```  (at the react_playground directory)
 
 ## preview
 
--> [https://friendly-mermaid-aec9c6.netlify.app/](https://friendly-mermaid-aec9c6.netlify.app/) 
+Only to see the interface (web socket server is not working)
+-> [https://friendly-mermaid-aec9c6.netlify.app/](https://friendly-mermaid-aec9c6.netlify.app/)  
 
-<p style="text-align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -110,3 +104,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+<p style="text-align:right">(<a href="#readme-top">back to top</a>)</p>
