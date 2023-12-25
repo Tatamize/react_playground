@@ -1,0 +1,6 @@
+# Ignore library, pdf, images
+
+*.pdf linguist-vendored
+*.png linguist-vendored
+*.jpg linguist-vendored
+*.sql linguist-vendored

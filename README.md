@@ -15,12 +15,12 @@ Only database container is inside in this moment.
 You can run the database container by ```make all``` 
 
 ## API server : ./nestapi
-Nest.js API server.  
+Nest.js API server. 'node_module' is needed to run.  
 ```npm start dev```
 
 
 ## Socket.io Server : ./websocket_server
-This directory is for Socket.io server.  
+This directory is for Socket.io server. 'node_module' is needed to run. 
 
 to run chat server  
 ```npm run chat```  
@@ -30,7 +30,7 @@ to run game server
 <br/><br/>
 
 ## Playground : ./react_playground
-And run the React front end  
+And run the React front end. 'node_module' is needed to run.  
 ```npm start```  (at the react_playground directory)  
 <br/><br/>
 
