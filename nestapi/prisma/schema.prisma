@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator jsonSchema {
+  provider = "prisma-json-schema-generator"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//-------------//
+//   Account   //
+//-------------//
+
+model Account {
+  id        Int @id @default(autoincrement())
+  email     String  @unique
+  name      String
+  nickname  String?
+  token     String?
+  image     String?
+  status    Boolean @default(false)
+
+  // Relation(called) : (no database item made)
+  friendSender    Friendship[] @relation("friendSender") 
+  friendRecipient Friendship[] @relation("friendRecipient")
+  chatOwner       Chatroom[] @relation("chatOwner")
+  chatInviter   ChatInvitation[] @relation("chatInviter")
+  chatGuest     ChatInvitation[] @relation("chatGuest")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+	@@map("Account")
+}
+
+model Friendship {
+  id                Int @id @default(autoincrement())
+  accepted          Boolean @default(false)
+
+  // Relation(calls) : only IDs are actually made(for others, no database item made)
+  friendSender      Account @relation("friendSender", fields: [friendSenderID], references: [id], onDelete: Cascade, onUpdate: Cascade) // only for prisma use (no database item made)
+  friendSenderID    Int
+  friendRecipient   Account @relation("friendRecipient", fields: [friendRecipientID], references: [id], onDelete: Cascade, onUpdate: Cascade) // only for prisma use (no database item made)
+  friendRecipientID Int
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  @@map("Friendship")
+}
+
+
+//-------------//
+//    Chat     //
+//-------------//
+
+enum RoomStatus {
+  PUBLIC
+  INVITEONLY
+}
+
+model Chatroom {
+  id          Int @id @default(autoincrement())
+  status      RoomStatus
+
+  // Relation(called)
+  invitations   ChatInvitation[] @relation("chatInvite")
+
+  // Relation(calls) : 
+  owner       Account @relation("chatOwner", fields:[ownerID], references: [id], onDelete: SetDefault, onUpdate: Cascade)
+  ownerID     Int @default(0)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@map("Chatroom")
+}
+// active people in the room = owner, guest with status:true
+
+model ChatInvitation {
+  id            Int @id @default(autoincrement())
+  status        Boolean @default(false)
+
+  // Relation(calls) : 
+  room          Chatroom @relation("chatInvite", fields: [roomID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roomID        Int
+  chatInviter   Account @relation("chatInviter", fields:[chatInviterID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  chatInviterID Int
+  chatGuest     Account @relation("chatGuest", fields: [chatGuestID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  chatGuestID   Int
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  @@map("ChatInvitation")
+}
+// for public chat, ChatInvitation is automatically made (chatInviter : owner ID, status : true, chatGuestID : client account ID)
+
+
+
+
+// model Game {
+//   id         Int @id @default(autoincrement())
+//   name       String
+//   playerA    Account @relation("playerA", fields:[playerA_ID], references: [id])
+//   playerA_ID  Int
+//   playerB    Account @relation("playerB", fields:[playerB_ID], references: [id])
+//   playerB_ID  Int
+//   score_A      Int @default(0)
+//   score_B      Int @default(0)
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+// 	@@map("Game")
+// }

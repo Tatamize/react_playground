@@ -1,0 +1,49 @@
+
+$color-background:#1c2129;
+$color-gray-background:rgb(69, 118, 136);
+$color-codam-pink:#a9297e;
+$color-codam-blue:#1b93bc;
+$color-codam-yellow:rgb(225, 175, 27);
+$color-codam-red:#da241a;
+$color-maintext:#bcd6d3;
+$color-reactblue:#63dff8;
+$color-hover-blue:#35afd8;
+
+$font-strong: 'Bebas Neue', sans-serif;
+$font-text: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+$size-font-unit: calc(10px + 1vmin);
+
+@mixin common_form(){
+  position: relative;
+  textarea, input{
+    padding: 8px;
+    border: none;
+    width: calc(100% - 81px);
+    height: inherit;
+    border-radius: 2px;
+    flex-grow: 1;
+  }
+  button{
+    margin-left: 1px;
+    width: 80px;
+    height: inherit;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding:  8px 16px;
+    border: none;
+    border-radius: 2px;
+    background: #333;
+    color:#FFF;
+    font-size: 1.3em;
+    font-family: $font-strong;
+    transition : all 0.2s ease 0s;
+    line-height: 1;
+    &:hover{
+      background:$color-hover-blue;
+    }
+  }
+}
+
+

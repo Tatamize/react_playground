@@ -2,16 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import io from 'socket.io-client'; // Import socket.io-client as 'io'
 import { Socket } from 'socket.io-client';
 import { useParams } from "react-router-dom";
-import "./chat.scss";
 
 
-export function Chat({userIdVal} : {userIdVal : string}){
+export function Chat(){
 	const { roomid } = useParams<{roomid :string}>(); 
 	const chat_socket = useRef<Socket | null>(null);
 	const chat_form = useRef<HTMLFormElement | null>(null);
 	const chat_text = useRef<HTMLTextAreaElement | null>(null);
 	const chat_messages = useRef<HTMLUListElement | null>(null);
 
+	let userIdVal :string = "1"; // dummy ID, call API later
 
 	// useEffect invokes the side effects.
 	// The first argument is a function contains the side effects
@@ -21,7 +21,7 @@ export function Chat({userIdVal} : {userIdVal : string}){
 		// [need API] check this if this userIdVal can access this roomid 
 
 		// create a socket running on WebSocket protocol
-		chat_socket.current = io('http://localhost:3000');
+		chat_socket.current = io('http://localhost:3333');
 
 		// This is the default event of chat_socket.io to do something(one time) at the connection
 		chat_socket.current.on("connect", () => {

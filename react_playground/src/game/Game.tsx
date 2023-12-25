@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from 'socket.io-client'; // Import socket.io-client as 'io'
 import { Socket } from 'socket.io-client';
-import "./game.scss";
 
 
 export const Game = () =>{
@@ -9,9 +8,10 @@ export const Game = () =>{
 	const socket = useRef<Socket | null>(null);	// Socket instance reference
 
 	useEffect(() => {
-
-		// create a Socket to connect to WebSocket server
 		socket.current = io('http://localhost:8080');
+
+		if (socket == null)
+			console.log("not connected!");
 
 		// This is the default event of socket.io doing something at the socket connection
 		socket.current.on("connect", () => {

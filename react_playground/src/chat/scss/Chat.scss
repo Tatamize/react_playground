@@ -1,0 +1,51 @@
+@import "../../shared/mixin.scss";
+
+
+#chat_form{
+  margin: 2.5em auto;
+  overflow: scroll;
+  overflow-x:hidden;
+  padding: 12px;
+  background-color: #ffffff2e;
+  // width:clamp(200px, 500px, 100%);
+  width:100%;
+  resize: vertical;
+  section{
+    div{
+      margin-bottom: 1em;
+      > span{
+        font-size: 0.9em;
+        color: #fff;
+      }
+      > div{
+        list-style: none;
+        display: block;
+        width: fit-content;
+        padding: 8px 20px;
+        background-color: #FFF;
+        border-radius: 18px;
+        margin-bottom: 4px;
+      }
+      &.my_dialog{
+        text-align: right;
+        > div{
+         margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+#chat_inner{
+  padding-bottom: 5px;
+}
+
+#form_submit{
+  @include common_form();
+  textarea{
+    height: 140px;
+  }
+  button{
+    height: 140px;
+  }
+}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 import { Link } from "react-router-dom";
-import "./chatroom.scss";
+
 
 interface ChatRoomProps {
 	id: number;
@@ -26,7 +25,7 @@ const room2 : ChatRoomProps = {
 // Call API to get the active rooms data
 // Check if this user is not banned to access this room
 
-export function ChatRoom({userIdVal} : {userIdVal:string}){
+export function ChatRoom(){
 	const [rooms, setRooms] = useState<ChatRoomProps[] | null>(null);
 	const chatroom_form = useRef<HTMLFormElement | null>(null);
 	const chatroom_input = useRef<HTMLInputElement | null>(null);

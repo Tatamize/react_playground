@@ -7,7 +7,7 @@ import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode> // it is needed but it render twice useEffect...
+  // <React.StrictMode>
     <CookiesProvider>
       <App />
     </CookiesProvider>

@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  # frontend:
+  #   image: frontend
+  #   container_name: frontend
+  #   hostname: frontend
+  #   build:  
+  #     context: ./frontend
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - data_www:/var/www/html
+  #   networks:
+  #     - docker-network
+  #   depends_on:
+  #     - api
+  #   restart: unless-stopped
+  #   init: true
+
+  # api:
+  #   image: api
+  #   container_name: api
+  #   hostname: api
+  #   build:
+  #     context: ./api
+  #     args:
+  #       ARG_PASS_SQL: ${ARG_PASS_SQL}
+  #       ARG_USER: ${ARG_USER}
+  #       ARG_DB: ${ARG_DB}
+  #   networks:
+  #     - docker-network
+  #   depends_on:
+  #     - postgresql
+  #   ports:
+  #     - "9000:9000"
+  #   restart: unless-stopped
+  #   init: true
+
+  postgresql:
+    image: postgresql
+    env_file: .env
+    container_name: postgresql
+    hostname: postgresql
+    build: 
+      context: ./postgresql
+      args:
+        ARG_DB: ${ARG_DB}
+        ARG_PASS_SQL: ${ARG_PASS_SQL}
+        ARG_PASS_ROOT: ${ARG_PASS_ROOT}
+        ARG_USER: ${ARG_USER}
+        ARG_DOMAIN: ${ARG_DOMAIN}
+    volumes:
+      - data_postgresql:/var/lib/postgresql/data
+    # networks:
+    #   - docker-network
+    ports:
+     - "5433:5432"  # 5432 -> conflict with local machine's
+    restart: unless-stopped
+    init: true
+
+
+# networks:
+#   docker-network:
+#     name: docker-network
+#     driver: bridge
+
+
+volumes:
+  data_postgresql:
+    driver: local
+    name: data_postgresql
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DB_VOLUME}
+  # data_www:
+    # driver: local
+    # name: data_www
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ${WWW_VOLUME}

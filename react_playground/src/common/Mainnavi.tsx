@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../img/logo.svg';
-import './mainnavi.scss';
+import logo from './img/logo.svg';
 
 export const Mainnav: React.FC = () =>{
 	return (

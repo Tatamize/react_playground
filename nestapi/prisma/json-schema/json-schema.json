@@ -1,0 +1,26 @@
+{
+  "id": 0,
+  "email": "string",
+  "name": "string",
+  "nickname": "string",
+  "token": "string",
+  "image": "string",
+  "status": false,
+  "friendSender": [
+    "string"
+  ],
+  "friendRecipient": [
+    "string"
+  ],
+  "chatOwner": [
+    "string"
+  ],
+  "chatInviter": [
+    "string"
+  ],
+  "chatGuest": [
+    "string"
+  ],
+  "createdAt": "2023-12-24T12:01:21.029Z",
+  "updatedAt": "2023-12-24T12:01:21.029Z"
+}

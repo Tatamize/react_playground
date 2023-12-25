@@ -1,0 +1,15 @@
+@import "../../shared/mixin.scss";
+
+/**
+* 3.0 - Footer
+*/
+
+footer{
+  position: absolute;
+  font-size: 11px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: calc(0.5 * $size-font-unit) $size-font-unit;
+}
